@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial R&D — Mohammad Hossein Sargolzaei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Industrial R&D &amp; System Optimization</h1>
+
+        <h2>Background</h2>
+        <p>After approximately thirteen years in university work, I left academia and considered working independently, developing my own ideas, freelancing for industry, and building products or projects.</p>
+        <p>One major part of this period was my work with BTA as a <strong>system optimizer/designer</strong> and <strong>researcher</strong> (2023–2026).</p>
+
+        <h2>My Role at BTA</h2>
+        <p>At BTA, my role was essentially: find the weak spots in the product line and make it better.</p>
+        <p>BTA already had machines, instruments, factory infrastructure, electrical engineers, mechanical engineers, and established product lines. What was missing was someone with my particular combination of hardware engineering, embedded systems, and system-level thinking.</p>
+        <p>I was shown existing product lines and asked to investigate how they could be improved. My approach was not necessarily to replace existing equipment. Instead, I looked at:</p>
+        <ul>
+            <li>How equipment was configured</li>
+            <li>How it was operated</li>
+            <li>How different machines interacted</li>
+            <li>Where manual intervention was unnecessary</li>
+            <li>How existing capabilities could be coordinated better</li>
+        </ul>
+
+        <h2>Production-Line Automation</h2>
+        <p>One important project involved several devices that were previously configured separately, controlled manually, and operated independently. I reorganized the configuration and operation of the existing devices so that their operation became coordinated as a pipeline across multiple machines.</p>
+        <p>The goal was to improve the efficiency of the existing product line without necessarily replacing the existing machines.</p>
+        <p>This is a good example of my general approach: Instead of replacing the whole system, find the unseen bottleneck in how the existing system is organized and remove it.</p>
+
+        <h2>Automatic Humidity Control</h2>
+        <p>Another project involved replacing traditional human-based humidity checking and adjustment with an automatic humidity monitoring and control mechanism.</p>
+        <p>Again, the objective was not simply to add technology. The important part was identifying where human intervention was unnecessary and replacing it with a relatively simple automated mechanism.</p>
+
+        <h2>Smart Aquaculture Monitoring and Control</h2>
+        <p>BTA produced feed for aquaculture. One of its needs was to create a small pilot aquaculture environment where its products could be tested before being sold and to provide additional technological support to customers.</p>
+        <p>I developed a monitoring and control system for shrimp ponds and rainbow-trout ponds. The system involved environmental monitoring, environmental control, sensing, embedded/system engineering, aquaculture, and practical industrial R&D.</p>
+        <p>This project became particularly important later because it revealed a strong connection between my existing engineering background and technology-oriented aquaculture R&D.</p>
+
+        <h2>Rainbow-Trout Aquaculture Emulator</h2>
+        <p>I independently developed a Python-based emulator for rainbow-trout fish ponds. This was not simply a small simulation script. I collected fish-growth equations, fish-digestion models, environmental models, and other relevant equations from reference books and other sources, then implemented them in an interactive simulation environment.</p>
+        <p>The pond was divided into <strong>10 × 10 × 10 cm³ cells</strong>. Each cell maintained environmental information, while individual fish maintained their own state. The simulation considered factors including fish density, neighboring cells, temperature, dissolved oxygen, water contamination, water flow, fish growth, fish survival, and environmental stress.</p>
+        <p>The system could simulate approximately <span class="key-number">180 days</span> at hourly resolution. I also incorporated real temperature fluctuations obtained from a weather station in the target city. The output included information such as surviving fish, individual fish characteristics, temperature, oxygen, water contamination, and environmental conditions within pond cells.</p>
+        <p>I considered the emulator conceptually similar to GEM5 in one respect: both represent a complex system through models of individual components/states and simulate their behavior over time.</p>
+
+        <h2>Industrial Validation</h2>
+        <p>The emulator was tested using information from several BTA customer farms. This should not be described as conventional academic validation. It was an industrial R&D project, and the available validation came from real information associated with BTA customer farms.</p>
+
+        <div class="footer-contact">
+            <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            const toggle = document.getElementById('mobile-menu');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                if (e.target.closest('.nav-toggle')) {
+                    menu.classList.toggle('active');
+                } else if (!e.target.closest('.nav-menu')) {
+                    menu.classList.remove('active');
+                }
+            }
+            if (window.innerWidth <= 768) {
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    if (e.target.closest('.dropdown-toggle')) {
+                        e.preventDefault();
+                        const menu = toggle.nextElementSibling;
+                        if (menu) menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Monitoring — Mohammad Hossein Sargolzaei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Intelligent Monitoring &amp; Computer Vision</h1>
+
+        <h2>Cattle Behaviour Analysis</h2>
+        <p>I worked on an image-processing-based cattle behavioural analysis system. The system is intended to:</p>
+        <ul>
+            <li>Identify individual cows</li>
+            <li>Log their movements and behavior</li>
+            <li>Analyze cattle behavior</li>
+            <li>Detect abnormal behavior</li>
+            <li>Automatically generate alerts</li>
+        </ul>
+        <p>An additional important part is integrating different databases into a single reference system, including information such as:</p>
+        <ul>
+            <li>Milking database</li>
+            <li>Veterinary database</li>
+            <li>Cowshed/farm database</li>
+        </ul>
+        <p>The purpose is to provide a more integrated management view rather than treating each database independently. The project is progressing incrementally.</p>
+        <p>I focused on the research idea, problem definition, and overall system design. The implementation was carried out substantially in collaboration with another developer.</p>
+
+        <h2>Veterinary / Animal-Domain Exposure</h2>
+        <p>During my BSc period, several of my close friends were veterinary students. I lived with them and regularly heard and discussed their coursework and veterinary topics. This gave me substantial informal exposure to veterinary concepts.</p>
+        <p>This should not be represented as formal veterinary education or professional veterinary qualification. Its relevance is that it helped make animal-related technical problems less foreign to me when I later worked on aquaculture and cattle-related projects.</p>
+
+        <div class="footer-contact">
+            <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            const toggle = document.getElementById('mobile-menu');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                if (e.target.closest('.nav-toggle')) {
+                    menu.classList.toggle('active');
+                } else if (!e.target.closest('.nav-menu')) {
+                    menu.classList.remove('active');
+                }
+            }
+            if (window.innerWidth <= 768) {
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    if (e.target.closest('.dropdown-toggle')) {
+                        e.preventDefault();
+                        const menu = toggle.nextElementSibling;
+                        if (menu) menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

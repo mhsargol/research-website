@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Mohammad Hossein Sargolzaei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>About Me</h1>
+
+        <h2>Education</h2>
+
+        <h3>BSc — Hardware Engineering, Computer Engineering</h3>
+        <p>University of Shahid Bahonar Kerman, Iran — 2006</p>
+        <p><strong>Final Project:</strong> Implementation of a remote-control hardware system through a wired telephone line. This was developed before SMS communication was available in Iran, using key-press control codes to remotely operate a digital system.</p>
+
+        <h3>MSc — Computer Architecture, Computer Engineering</h3>
+        <p>University of Tehran, Iran — 2009</p>
+        <p><strong>Thesis:</strong> Fault-Tolerant System Design</p>
+        <p>Developed an RT-level Verilog fault-simulation toolchain and established the fundamental fault-tolerance idea that later appeared across multiple publications.</p>
+
+        <h3>PhD — Computer Architecture, Computer Engineering</h3>
+        <p>University of Tehran, Iran — 2018</p>
+        <p><strong>Dissertation:</strong> Energy reduction in coarse-grained reconfigurable Processors by reducing context-switching overhead</p>
+        <p>The PhD involved a large-scale CGRA research project, including architecture implementation, custom generation tools, simulation/modeling infrastructure, and architecture optimization, resulting in a research platform of approximately <span class="key-number">1.8 million transistors</span>.</p>
+
+        <h2>University Career</h2>
+
+        <h3>2010–2018 — University Lecturer</h3>
+        <p>University of Sistan and Baluchestan</p>
+
+        <h3>2018–2023 — Assistant Professor</h3>
+        <p>University of Sistan and Baluchestan</p>
+
+        <h3>2019–2023 — Head of Computer Engineering Department</h3>
+        <p>University of Sistan and Baluchestan</p>
+
+        <p>During part of my PhD period, I continued teaching because there were courses that nobody else available at the university could teach. I taught courses including:</p>
+
+        <ul>
+            <li><strong>BSc:</strong> Basic Programming, Discrete Mathematics, Digital Circuit Design, Computer Architecture, Data Transmission, VLSI System Design, Microprocessors</li>
+            <li><strong>MSc:</strong> Advanced Computer Architecture, Dependable System Design, Advanced VLSI System Design</li>
+        </ul>
+
+        <p>My teaching materials were generally prepared in English because I found that easier and more efficient.</p>
+
+        <h2>Laboratory Development</h2>
+        <p>I redesigned the syllabi and helped renew equipment for three laboratories:</p>
+        <ul>
+            <li>Digital Circuit Design Laboratory</li>
+            <li>Computer Architecture Laboratory</li>
+            <li>Microprocessor Laboratory</li>
+        </ul>
+
+        <h2>Curriculum Development</h2>
+        <p>As Head of the Computer Engineering Department, I worked on the complete undergraduate Computer Engineering curriculum. Using curricula from the top three Iranian universities as major references, I selected and reworked an updated curriculum better suited to preparing students for professional employment and further academic study.</p>
+
+        <h2>Student Supervision</h2>
+        <p>I supervised roughly a dozen BSc and MSc students. Students knew that working with me was not easy — I double-checked their work carefully, expected them to understand what they were doing, and did not simply accept superficial results. As a result, the students who strongly trusted themselves and wanted to do serious projects were more likely to come to me.</p>
+        <p>Their projects included hardware implementation, wearable healthcare, drone-based routing, and other engineering projects.</p>
+
+        <h2>Department Leadership Impact</h2>
+        <p>As Head of the Computer Engineering Department, I had a significant effect on both the department and student output. Before my period of leadership, approximately 1–3 students per year were accepted into MSc programs across all universities. After the changes, approximately 3–5 students per year were accepted into MSc programs at universities among the top five in Iran.</p>
+
+        <h2>Book</h2>
+        <p>I wrote a Persian book (as the second author):</p>
+        <p><strong>Soft Computing Methods in Mathematical Programming</strong> (<em>روش‌های محاسبات نرم در برنامه‌ریزی ریاضی</em>) — 2015</p>
+        <p>The book includes material on Genetic Algorithms, DNA Computing, Neural Networks, social/community-based algorithms, and other evolutionary algorithms.</p>
+
+        <h2>Industrial Period</h2>
+        <h3>BTA — System Optimizer/Designer and Researcher (2023–2026)</h3>
+        <p>At BTA, my role was essentially: find the weak spots in the product line and make it better. I worked on production-line automation, automatic humidity control, and aquaculture monitoring and control systems for shrimp and rainbow-trout ponds.</p>
+
+        <div class="footer-contact">
+            <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            const toggle = document.getElementById('mobile-menu');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                if (e.target.closest('.nav-toggle')) {
+                    menu.classList.toggle('active');
+                } else if (!e.target.closest('.nav-menu')) {
+                    menu.classList.remove('active');
+                }
+            }
+            if (window.innerWidth <= 768) {
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    if (e.target.closest('.dropdown-toggle')) {
+                        e.preventDefault();
+                        const menu = toggle.nextElementSibling;
+                        if (menu) menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconfigurable Computing — Mohammad Hossein Sargolzaei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Reconfigurable &amp; High-Performance Computing</h1>
+
+        <h2>Origin of the PhD Research</h2>
+        <p>During my computer-architecture studies, I encountered many advanced processor architectures and techniques, including superscalar, VLIW, out-of-order execution, FPGA architectures, and many other advanced approaches. Rather than focusing on one architecture in isolation, I studied their characteristics and limitations.</p>
+        <p>One observation gradually emerged. Many advanced processor architectures attempted to improve the conventional linear pipeline by making that architecture increasingly sophisticated and "richer."</p>
+        <p>I started thinking about a different approach. Instead of making the linear pipeline increasingly complex, I considered: <strong>What if the pipeline itself became two-dimensional?</strong></p>
+        <p>The purpose was to reduce the effect of control hazards and increase the effective size of the basic block. At the time, I was thinking about increasing the effective basic-block size from approximately 3–5 instructions to something roughly 2–3 times larger.</p>
+        <p>I then performed a literature review. During that review, I discovered that an architecture with characteristics related to this idea had already been introduced: <strong>Coarse-Grain Reconfigurable Architecture (CGRA)</strong>.</p>
+
+        <h2>Building the Research Platform</h2>
+        <p>During the PhD, I discovered that the established tools and libraries that would normally be useful for studying the architecture I wanted to investigate were not accessible or appropriate for my particular CGRA research. Therefore I had to build much of the research infrastructure myself.</p>
+        <p>I:</p>
+        <ul>
+            <li>Implemented the CGRA platform from scratch</li>
+            <li>Wrote C programs that generated transistors and wires for different CGRA modules</li>
+            <li>Used implementation papers and reported electrical/architectural models as the foundation</li>
+            <li>Completed the main architecture</li>
+            <li>Tested its processing capability</li>
+            <li>Developed another C-based simulation/modeling tool for processing delay and energy consumption</li>
+            <li>Used this in-house environment for the University of Tehran laboratory</li>
+            <li>Developed and applied my own optimization algorithm</li>
+            <li>Extracted relevant characteristics</li>
+            <li>Reported the resulting research in publications</li>
+        </ul>
+        <p>The final implementation contained approximately <span class="key-number">1.8 million transistors</span>.</p>
+
+        <h2>CGRA Optimization: "Preserve the Information, Change Its Presentation"</h2>
+        <p>A conceptual idea that I want preserved from the CGRA work is: <strong>preserve the information but change its presentation</strong>.</p>
+        <p>This is important because it also helps explain the conceptual relationship I see between the CGRA work and my newer neural-network inference research. The idea is not that every later project uses the same algorithm.</p>
+        <p>Rather, in some complex systems, the information itself may not need to be changed. A different representation, organization, or presentation can allow the surrounding system to operate much more efficiently.</p>
+        <p>This is a conceptual connection, not yet a claim that the two projects are technically identical.</p>
+
+        <h2>PhD Dissertation</h2>
+        <p><strong>Title:</strong> Energy reduction in coarse-grained reconfigurable Processors by reducing context-switching overhead</p>
+        <p><strong>University:</strong> University of Tehran, Iran — 2018</p>
+
+        <h2>Related Publications</h2>
+        <ul>
+            <li><strong>Energy Efficient Configuration Unification and Compression for CGRAs</strong> — 2018</li>
+            <li><strong>Design-Space Exploration of Application-Specific Instruction-set Processor Design</strong> — 2021</li>
+        </ul>
+
+        <div class="footer-contact">
+            <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            const toggle = document.getElementById('mobile-menu');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                if (e.target.closest('.nav-toggle')) {
+                    menu.classList.toggle('active');
+                } else if (!e.target.closest('.nav-menu')) {
+                    menu.classList.remove('active');
+                }
+            }
+            if (window.innerWidth <= 768) {
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    if (e.target.closest('.dropdown-toggle')) {
+                        e.preventDefault();
+                        const menu = toggle.nextElementSibling;
+                        if (menu) menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

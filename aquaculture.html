@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquaculture — Mohammad Hossein Sargolzaei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Aquaculture &amp; Intelligent Systems</h1>
+
+        <h2>Background</h2>
+        <p>Through my work with BTA, I became involved in aquaculture-related research and engineering projects. BTA produced feed for aquaculture. One of its needs was to create a small pilot aquaculture environment where its products could be tested before being sold and to provide additional technological support to customers.</p>
+        <p>Working with an established industrial company with real products, industrial activities, and international customers allowed me to approach aquaculture not simply as an academic subject, but as a complex real-world system involving biological, physical, sensing, computational, and operational components.</p>
+
+        <h2>Smart Aquaculture Monitoring and Control</h2>
+        <p>I developed a monitoring and control system for shrimp ponds and rainbow-trout ponds. The system involved:</p>
+        <ul>
+            <li>Environmental monitoring</li>
+            <li>Environmental control</li>
+            <li>Sensing</li>
+            <li>Embedded/system engineering</li>
+            <li>Aquaculture</li>
+            <li>Practical industrial R&D</li>
+        </ul>
+        <p>This project revealed a strong connection between my existing engineering background and technology-oriented aquaculture R&D.</p>
+
+        <h2>Rainbow-Trout Aquaculture Emulator</h2>
+        <p>I independently developed a Python-based emulator for rainbow-trout fish ponds. This was not simply a small simulation script. I collected fish-growth equations, fish-digestion models, environmental models, and other relevant equations from reference books and other sources, then implemented them in an interactive simulation environment.</p>
+        <p>The pond was divided into <strong>10 × 10 × 10 cm³ cells</strong>. Each cell maintained environmental information, while individual fish maintained their own state. The simulation considered factors including:</p>
+        <ul>
+            <li>Fish density</li>
+            <li>Neighboring cells and their characteristics</li>
+            <li>Temperature</li>
+            <li>Dissolved oxygen</li>
+            <li>Water contamination</li>
+            <li>Water flow</li>
+            <li>Fish growth and survival</li>
+            <li>Environmental stress</li>
+        </ul>
+        <p>The system could simulate approximately <span class="key-number">180 days</span> at hourly resolution. I also incorporated real temperature fluctuations obtained from a weather station in the target city.</p>
+        <p>The output included information such as surviving fish, individual fish characteristics, temperature, oxygen, water contamination, and environmental conditions within pond cells.</p>
+        <p>I considered the emulator conceptually similar to GEM5 in one respect: both represent a complex system through models of individual components/states and simulate their behavior over time.</p>
+
+        <h2>Industrial Validation</h2>
+        <p>The emulator was tested using information from several BTA customer farms. This should not be described as conventional academic validation. It was an industrial R&D project, and the available validation came from real information associated with BTA customer farms.</p>
+        <p>This makes the project particularly relevant to organizations working on aquaculture, water systems, environmental modelling, sensing, simulation, decision-support systems, and industrial R&D.</p>
+
+        <div class="footer-contact">
+            <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            const toggle = document.getElementById('mobile-menu');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                if (e.target.closest('.nav-toggle')) {
+                    menu.classList.toggle('active');
+                } else if (!e.target.closest('.nav-menu')) {
+                    menu.classList.remove('active');
+                }
+            }
+            if (window.innerWidth <= 768) {
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    if (e.target.closest('.dropdown-toggle')) {
+                        e.preventDefault();
+                        const menu = toggle.nextElementSibling;
+                        if (menu) menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

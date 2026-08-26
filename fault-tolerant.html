@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fault-Tolerant Systems — Mohammad Hossein Sargolzaei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Fault-Tolerant Systems</h1>
+
+        <h2>The Main Research Story</h2>
+        <p>One of the most important research stories in my career began during my MSc studies. I learned about homogeneous systems and liked the basic concept of modularity.</p>
+        <p>While working in fault detection and correction, I developed a very simple idea: fault and error detection/correction can be based on comparing the results of neighboring modules, somewhat like shift-register-based counting.</p>
+        <p>The underlying observation was that conventional fault detection and correction mechanisms can require significant hardware and communication overhead. My approach aimed to reduce this overhead by avoiding or reducing requirements such as large additional wires, additional registers, test-data transfer, and additional testing/correction infrastructure.</p>
+        <p><strong>The important point is that this was one underlying idea, not a collection of unrelated research ideas.</strong> I repeatedly applied the same fundamental concept to different systems. This is one of the clearest examples of the principle: <em>Finding Simple Solutions for Unseen Bottlenecks in Complex Systems</em>.</p>
+
+        <h2>Applications</h2>
+        <p>I applied the fault-tolerance idea to many different systems:</p>
+        <ul>
+            <li><strong>Digital signal processing:</strong> FIR, IIR, Wavelet, FFT</li>
+            <li><strong>Cryptography:</strong> DES, 3DES, AES, ECC</li>
+            <li><strong>Compression:</strong> Arithmetic coding, Variable-length coding, Huffman coding</li>
+            <li><strong>Video compression / video processing:</strong> H.264, MPEG</li>
+        </ul>
+        <p>Many of these systems were implemented in Verilog and/or VHDL. The H.264 work is particularly worth preserving because it demonstrates that the idea was not restricted to classical digital filters or simple hardware structures.</p>
+
+        <h2>Fault-Tolerant Neural Network</h2>
+        <p>I also applied the same fundamental fault-tolerance idea to an MLP neural network implemented in Verilog. The neural network was implemented as hardware and the fault-tolerance approach was applied to the architecture. The resulting research was published.</p>
+        <p>According to the Google Scholar information available to me, this is currently my most highly cited publication. This project is important because it shows that the same fundamental research idea could move from conventional digital systems into neural-network hardware.</p>
+
+        <h2>First Publication Story</h2>
+        <p>One of the earliest papers was: <strong>"RTL Concurrent Error Detection using Modular Partitioning Technique"</strong> — 2008.</p>
+        <p>This paper is particularly memorable because my professor initially thought the idea was too unusual and told me to remove my name from the paper. The idea that was considered "insane" became the underlying concept that I subsequently applied to many other systems.</p>
+        <p>This publication is not merely one item in a publication list. It represents the beginning of a research trajectory: simple idea → repeated application → multiple domains → multiple publications.</p>
+
+        <h2>RT-Level Verilog Fault-Simulator Toolchain</h2>
+        <p>Around 2007, while I was an MSc student at the University of Tehran, my professor was preparing a new edition of his book. He asked me and my colleague Hashem to develop a toolchain.</p>
+        <p>The intended workflow was approximately:</p>
+        <div class="principle-box">
+            <div class="arrow-flow">Verilog code
+        ↓
+        Xilinx ISE synthesis
+        ↓
+        Gate-level netlist
+        ↓
+        Event-driven fault simulator
+        ↓
+        Fault-coverage report</div>
+        </div>
+        <p>We initially developed batch scripts to invoke the Xilinx ISE kernel and convert the Verilog design into a gate-level netlist. We then developed an event-driven fault simulator for the resulting netlist. The simulator generated the required fault-coverage report.</p>
+        <p>We automated several steps including file transfer, tool execution, synthesis, and simulation. The toolchain used Xilinx ISE, ModelSim, Verilog, and batch scripting.</p>
+        <p>The professor later introduced the toolchain in his book. According to my recollection, he did not acknowledge the work of me and Hashem when introducing the toolchain.</p>
+
+        <h2>Related Publications</h2>
+        <ul>
+            <li><strong>RTL Concurrent Error Detection using Modular Partitioning Technique</strong> — 2008</li>
+            <li><strong>Online and Offline Test Unification in Digital Filters</strong> — 2008</li>
+            <li><strong>Low Cost Concurrent Error Detection for Lattice Wave Digital Filters</strong> — 2008</li>
+            <li><strong>A Low-Cost Fault-Tolerant Approach for Hardware Implementation of Artificial Neural Networks</strong> — 2009</li>
+            <li><strong>Low Cost Error Tolerant Motion Estimation for H.264/AVC Standard</strong> — 2010</li>
+            <li><strong>Low Cost Fault Tolerant Architecture for Advanced Encryption Standard</strong> — 2011</li>
+            <li><strong>A Low Power and Error Tolerant Structure for Motion Estimation Core in H.264/AVC Standard</strong> — 2013</li>
+        </ul>
+
+        <div class="footer-contact">
+            <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            const toggle = document.getElementById('mobile-menu');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                if (e.target.closest('.nav-toggle')) {
+                    menu.classList.toggle('active');
+                } else if (!e.target.closest('.nav-menu')) {
+                    menu.classList.remove('active');
+                }
+            }
+            if (window.innerWidth <= 768) {
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    if (e.target.closest('.dropdown-toggle')) {
+                        e.preventDefault();
+                        const menu = toggle.nextElementSibling;
+                        if (menu) menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

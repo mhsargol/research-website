@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Platforms — Mohammad Hossein Sargolzaei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Research Platforms &amp; Applied Systems</h1>
+
+        <h2>VR-Based Training and Research Platform</h2>
+        <p>Around 2024, I became involved in a part-time project as <strong>System Designer and Senior Engineer</strong>. The project is a VR-based training and research platform.</p>
+        <p>The project began largely from a specification, and my colleague and I developed the main technical infrastructure. The platform is essentially a multiplayer first-person-shooter-style environment operating over a local network, combined with research and training components.</p>
+        <p>It includes:</p>
+        <ul>
+            <li><strong>Graphical/VR engine:</strong> 3D environment, VR headset support, synchronization of multiple players, multiplayer operation</li>
+            <li><strong>Neurophysiological and vital-factor sensing:</strong> The system collects information related to cognitive/neurophysiological reactions, physiological/vital reactions, and responses under stress</li>
+            <li><strong>Real-time scoring:</strong> A lightweight scoring kernel evaluates individual performance, team performance, and real-time events during gameplay</li>
+            <li><strong>Post-game analysis:</strong> A separate, more computationally complex kernel analyzes the final performance of each participant and generates an individual progress report</li>
+            <li><strong>Research monitoring station:</strong> Researchers can observe gameplay, collect information, monitor participants, and view information from the players' point of view (third-person view on their monitors)</li>
+        </ul>
+        <p>The team purchased VR headsets, laptops and basic components, but the main hardware and applications were designed and implemented by the team. In fact, the work is done by four different teams (each one working on a part such as Graphical/VR, sensors, kat-walk-like station, and AI development — with AI development being implemented by myself). As System Designer and Engineer, I assemble the whole system and present it as a single working system.</p>
+        <p>Some technical details cannot be disclosed because of project privacy and founder confidentiality.</p>
+
+        <h2>Wearable Healthcare Device</h2>
+        <p>Around 2019/2020, one BSc student wanted to do a real hardware implementation as his final project. I proposed the idea of a low-cost wearable healthcare device and supervised/coached him throughout the design and implementation process.</p>
+        <p>The intended device had three important characteristics:</p>
+        <ul>
+            <li>Wearable and comfortable enough for normal daily activity</li>
+            <li>Inexpensive</li>
+            <li>Able to notify a family member when an unexpected incident/emergency occurred</li>
+        </ul>
+        <p>The device was designed and implemented over approximately eight months. A patent application was initiated, but the process was later discontinued after the student moved to Canada for PhD study.</p>
+        <p>The important point is that this was not simply "I supervised a student." I provided the idea, technical direction, supervision, and coaching throughout the hardware design and implementation.</p>
+
+        <div class="footer-contact">
+            <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            const toggle = document.getElementById('mobile-menu');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                if (e.target.closest('.nav-toggle')) {
+                    menu.classList.toggle('active');
+                } else if (!e.target.closest('.nav-menu')) {
+                    menu.classList.remove('active');
+                }
+            }
+            if (window.innerWidth <= 768) {
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    if (e.target.closest('.dropdown-toggle')) {
+                        e.preventDefault();
+                        const menu = toggle.nextElementSibling;
+                        if (menu) menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
