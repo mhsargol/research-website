@@ -97,9 +97,7 @@ blockquote {
     color: #bbbbdd;
 }
 
-/* ============================================================
-   VERTICAL FLOWCHART (Cascading / Staircase)
-   ============================================================ */
+/* Code-like boxes */
 .principle-box {
     background: #1a1a2e;
     border: 1px solid #2a2a4e;
@@ -108,54 +106,13 @@ blockquote {
     margin: 25px 0;
 }
 
-.flowchart {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 10px 0;
+.principle-box .arrow-flow {
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: #00d9ff;
+    line-height: 2;
+    white-space: pre;
 }
-
-/* Each step is a box */
-.step {
-    padding: 10px 24px;
-    background: #0d0d1a;
-    border: 2px solid #2a2a4e;
-    border-radius: 8px;
-    font-size: 1.05em;
-    font-weight: 500;
-    color: #e0e0e0;
-    transition: background 0.2s, border-color 0.2s;
-    min-width: 200px;
-}
-
-.step:hover {
-    background: #1a1a2e;
-    border-color: #e94560;
-}
-
-/* Indentation: each step more than the previous */
-.step-1 { margin-left: 0px; }
-.step-2 { margin-left: 40px; }
-.step-3 { margin-left: 80px; }
-.step-4 { margin-left: 120px; }
-.step-5 { margin-left: 160px; }
-
-/* Arrows - indented to match the step above */
-.arrow {
-    font-size: 1.4em;
-    color: #555577;
-    line-height: 1;
-    padding: 2px 0;
-}
-
-.arrow-1 { margin-left: 12px; }
-.arrow-2 { margin-left: 52px; }
-.arrow-3 { margin-left: 92px; }
-.arrow-4 { margin-left: 132px; }
-.arrow-5 { margin-left: 172px; }
-
-/* ============================================================ */
 
 .key-number {
     color: #e94560;
@@ -370,26 +327,8 @@ blockquote {
         padding: 16px 20px;
     }
 
-    /* Mobile: reduce indentation */
-    .step-2 { margin-left: 20px; }
-    .step-3 { margin-left: 40px; }
-    .step-4 { margin-left: 60px; }
-    .step-5 { margin-left: 80px; }
-
-    .arrow-1 { margin-left: 8px; }
-    .arrow-2 { margin-left: 28px; }
-    .arrow-3 { margin-left: 48px; }
-    .arrow-4 { margin-left: 68px; }
-    .arrow-5 { margin-left: 88px; }
-
-    .step {
-        font-size: 0.95rem;
-        padding: 8px 16px;
-        min-width: 150px;
-    }
-
-    .arrow {
-        font-size: 1.2em;
+    .principle-box .arrow-flow {
+        font-size: 0.8rem;
     }
 }
 
@@ -400,22 +339,5 @@ blockquote {
 
     h2 {
         font-size: 1.2rem;
-    }
-
-    .step-2 { margin-left: 12px; }
-    .step-3 { margin-left: 24px; }
-    .step-4 { margin-left: 36px; }
-    .step-5 { margin-left: 48px; }
-
-    .arrow-1 { margin-left: 6px; }
-    .arrow-2 { margin-left: 18px; }
-    .arrow-3 { margin-left: 30px; }
-    .arrow-4 { margin-left: 42px; }
-    .arrow-5 { margin-left: 54px; }
-
-    .step {
-        font-size: 0.85rem;
-        padding: 6px 12px;
-        min-width: 120px;
     }
 }
