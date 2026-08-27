@@ -101,37 +101,38 @@ blockquote {
    VERTICAL FLOWCHART (Cascading / Staircase)
    ============================================================ */
 .principle-box {
-    background: #1a1a2e;
-    border: 1px solid #2a2a4e;
-    border-radius: 8px;
-    padding: 25px 30px;
-    margin: 25px 0;
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    margin: 10px 0;
 }
 
 .flowchart {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
-    padding: 10px 0;
+    gap: 2px;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Each step is a box */
+/* Each step is plain text — no box */
 .step {
-    padding: 10px 24px;
-    background: #0d0d1a;
-    border: 2px solid #2a2a4e;
-    border-radius: 8px;
-    font-size: 1.05em;
+    padding: 4px 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 1.1em;
     font-weight: 500;
     color: #e0e0e0;
-    transition: background 0.2s, border-color 0.2s;
-    min-width: 200px;
+    transition: color 0.2s;
+    min-width: 0;
 }
 
 .step:hover {
-    background: #1a1a2e;
-    border-color: #e94560;
+    color: #00d9ff;
+    background: transparent;
+    border-color: transparent;
 }
 
 /* Indentation: each step more than the previous */
@@ -143,17 +144,52 @@ blockquote {
 
 /* Arrows - indented to match the step above */
 .arrow {
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: #555577;
     line-height: 1;
-    padding: 2px 0;
+    padding: 0;
 }
 
-.arrow-1 { margin-left: 12px; }
-.arrow-2 { margin-left: 52px; }
-.arrow-3 { margin-left: 92px; }
-.arrow-4 { margin-left: 132px; }
-.arrow-5 { margin-left: 172px; }
+.arrow-1 { margin-left: 16px; }
+.arrow-2 { margin-left: 56px; }
+.arrow-3 { margin-left: 96px; }
+.arrow-4 { margin-left: 136px; }
+.arrow-5 { margin-left: 176px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .step-2 { margin-left: 20px; }
+    .step-3 { margin-left: 40px; }
+    .step-4 { margin-left: 60px; }
+    .step-5 { margin-left: 80px; }
+
+    .arrow-1 { margin-left: 12px; }
+    .arrow-2 { margin-left: 32px; }
+    .arrow-3 { margin-left: 52px; }
+    .arrow-4 { margin-left: 72px; }
+    .arrow-5 { margin-left: 92px; }
+
+    .step {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .step-2 { margin-left: 12px; }
+    .step-3 { margin-left: 24px; }
+    .step-4 { margin-left: 36px; }
+    .step-5 { margin-left: 48px; }
+
+    .arrow-1 { margin-left: 8px; }
+    .arrow-2 { margin-left: 20px; }
+    .arrow-3 { margin-left: 32px; }
+    .arrow-4 { margin-left: 44px; }
+    .arrow-5 { margin-left: 56px; }
+
+    .step {
+        font-size: 0.9em;
+    }
+}
 
 /* ============================================================ */
 
