@@ -3,48 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PhD research on identifying and reducing context-switching overhead in coarse-grained reconfigurable processors through modelling, configuration optimisation and design-space exploration.">
     <title>Reconfigurable Computing — Mohammad Hossein Sargolzaei</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .research-lead { font-size: 1.12rem; color: #c9c9df; }
+        .research-note { color: #9999b8; font-size: .92rem; }
+        .research-quote { margin: 24px 0; padding: 18px 22px; background: #151528; border-left: 4px solid #e94560; border-radius: 0 8px 8px 0; }
+        .research-quote strong { color: #fff; font-size: 1.12rem; }
+        .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 20px 0; }
+        .research-card { background: #151528; border: 1px solid #292943; border-radius: 10px; padding: 17px; }
+        .research-card h3 { margin-top: 0; color: #fff; }
+        .research-card p:last-child { margin-bottom: 0; }
+        .metric { color: #e94560; font-size: 1.65rem; font-weight: 700; display: block; line-height: 1.3; }
+        .metric-label { color: #c9c9df; font-size: .92rem; }
+        .table-wrap { overflow-x: auto; margin: 18px 0 24px; }
+        table { width: 100%; border-collapse: collapse; min-width: 440px; background: #111121; }
+        th, td { padding: 11px 13px; text-align: left; border-bottom: 1px solid #292943; }
+        th { color: #fff; background: #1a1a2e; }
+        td { color: #d5d5e5; }
+        .tag { margin-top: 5px; }
+        details { margin: 12px 0; padding: 13px 16px; background: #131326; border: 1px solid #292943; border-radius: 8px; }
+        summary { color: #00d9ff; cursor: pointer; font-weight: 600; }
+        details[open] summary { margin-bottom: 12px; }
+        .contribution-list li { margin-bottom: 9px; }
+        .section-intro { color: #b9b9d0; }
+        @media (max-width: 600px) { .research-card { padding: 14px; } th, td { padding: 9px; } }
+    </style>
 </head>
 <body>
-
     <div id="navbar-placeholder"></div>
 
-    <div class="container">
+    <main class="container">
         <h1>Reconfigurable &amp; High-Performance Computing</h1>
+        <p class="subtitle">Finding and addressing hidden bottlenecks in dynamically reconfigurable processors</p>
+
+        <p class="research-lead">My PhD research investigated how context-switching overhead affects the energy efficiency and processing performance of Coarse-Grained Reconfigurable Architectures (CGRAs). Rather than treating the processor as a collection of independent components, I approached it as a complex system whose overall efficiency depends on the interaction between processing elements, memories, configuration mechanisms, and execution behaviour.</p>
+        <p>The central challenge was to identify where resources and energy were being consumed during execution, understand the underlying causes, and develop methods to improve the system without unnecessarily increasing its hardware complexity.</p>
+
+        <div class="research-quote"><strong>Identify the hidden bottleneck. Understand the system behind it. Find a simpler way to improve the whole.</strong></div>
 
         <h2>Origin of the PhD Research</h2>
         <p>During my computer architecture studies, I encountered many advanced processor architectures and techniques, including superscalar, VLIW, out-of-order execution, FPGA architectures, and many other advanced approaches. Rather than focusing on one architecture in isolation, I studied their characteristics and limitations.</p>
-        <p>One observation gradually emerged. Many advanced processor architectures attempted to improve the conventional linear pipeline by making that architecture increasingly sophisticated and "richer."</p>
+        <p>One observation gradually emerged. Many advanced processor architectures attempted to improve the conventional linear pipeline by making that architecture increasingly sophisticated and “richer.”</p>
         <p>I started thinking about a different approach. Instead of making the linear pipeline increasingly complex, I considered: <strong>What if the pipeline itself became two-dimensional?</strong></p>
         <p>The purpose was to reduce the effect of control hazards and increase the effective size of the basic block. At the time, I was thinking about increasing the effective basic-block size from approximately 3–5 instructions to something roughly 2–3 times larger.</p>
         <p>I then performed a literature review. During that review, I discovered that an architecture with characteristics related to this idea had already been introduced: <strong>Coarse-Grain Reconfigurable Architecture (CGRA)</strong>.</p>
 
-        <h2>Building the Research Platform</h2>
-        <p>During the PhD, I discovered that the established tools and libraries that would normally be useful for studying the architecture I wanted to investigate were not accessible or appropriate for my particular CGRA research. Therefore I had to build much of the research infrastructure myself.</p>
-        <p>I:</p>
-        <ul>
-            <li>Implemented the CGRA platform from scratch</li>
-            <li>Wrote C programs that generated transistors and wires for different CGRA modules</li>
-            <li>Used implementation papers and reported electrical/architectural models as the foundation</li>
-            <li>Completed the main architecture</li>
-            <li>Tested its processing capability</li>
-            <li>Developed another C-based simulation/modeling tool for processing delay and energy consumption</li>
-            <li>Used this in-house environment for the University of Tehran laboratory</li>
-            <li>Developed and applied my own optimization algorithm</li>
-            <li>Extracted relevant characteristics</li>
-            <li>Reported the resulting research in publications</li>
-        </ul>
-        <p>The final implementation contained approximately <span class="key-number">1.8 million transistors</span>.</p>
+        <h2>Identifying the Bottleneck: Context-Switching Overhead</h2>
+        <p>A CGRA executes computational kernels using an array of Processing Elements (PEs), supported by data memory, context memory, and control mechanisms. Each PE contains Context Registers (CRs), which store configuration information in a role analogous to instruction registers in conventional processors.</p>
+        <p>Kernel execution involves different phases, including boot, context switching, and context execution. I investigated the cost of context switching and its influence on overall execution.</p>
+        <p>The analysis showed that the contribution of the context-switching system varied substantially across benchmarks:</p>
+        <div class="research-grid">
+            <div class="research-card"><span class="metric">0–96%</span><span class="metric-label">Contribution to execution delay</span></div>
+            <div class="research-card"><span class="metric">17–94%</span><span class="metric-label">Contribution to energy consumption</span></div>
+        </div>
+        <p>These ranges describe the variation across benchmarks. The original presentation also shows average contributions for each benchmark group in its energy-breakdown charts. The results revealed that improving the processing elements alone would not necessarily improve the complete processor: configuration and context-management mechanisms also needed to be considered.</p>
 
-        <h2>CGRA Optimization: "Preserve the Information, Change Its Presentation"</h2>
-        <p>A conceptual idea that I want preserved from the CGRA work is: <strong>preserve the information but change its presentation</strong>.</p>
-        <p>This is important because it also helps explain the conceptual relationship I see between the CGRA work and my newer neural-network inference research. The idea is not that every later project uses the same algorithm.</p>
-        <p>Rather, in some complex systems, the information itself may not need to be changed. A different representation, organization, or presentation can allow the surrounding system to operate much more efficiently.</p>
-        <p>This is a conceptual connection, not yet a claim that the two projects are technically identical.</p>
+        <h2>Building the CGRA Platform</h2>
+        <p>The research also required an implementation of the CGRA platform itself. I built the platform from scratch and wrote C programs to generate transistors and wires for different CGRA modules, using implementation papers and reported electrical and architectural models as a foundation.</p>
+        <p>After completing the main architecture, I tested its processing capability. The final implementation contained approximately <strong class="key-number">1.8 million transistors</strong>. This hardware-generation and implementation work formed part of the foundation for the subsequent modelling and optimisation research.</p>
+
+        <h2>Building the Research Platform: CGRAmulator</h2>
+        <p>The established tools and libraries available for the investigation were not sufficient for the specific architectural study I wanted to perform. I therefore developed a multi-level modelling environment, called <strong>CGRAmulator</strong>, to support the experiments.</p>
+        <div class="research-grid">
+            <div class="research-card"><h3>RTL-level</h3><span class="tag">Verilog</span><p>Hardware-level implementation of the architecture.</p></div>
+            <div class="research-card"><h3>Transistor-level</h3><span class="tag">HSPICE</span><p>Detailed electrical-level modelling used for reference evaluation.</p></div>
+            <div class="research-card"><h3>High-level ISS</h3><span class="tag">C++</span><p>Fast instruction-set simulation for evaluating kernels and architectural parameters.</p></div>
+        </div>
+        <p>The model included low-level parameters associated with context memory, data memory, and processing elements. The presentation reports the following execution-time ranges for the three implementations:</p>
+        <div class="table-wrap"><table><thead><tr><th>Implementation</th><th>Reported execution time</th></tr></thead><tbody>
+            <tr><td>RTL-level</td><td>5–40 minutes</td></tr>
+            <tr><td>Transistor-level</td><td>18–30 hours</td></tr>
+            <tr><td>High-level ISS</td><td>Less than 300 ms</td></tr>
+        </tbody></table></div>
+        <p>CGRAmulator made it possible to simulate input kernels thousands of times faster than HSPICE, with acceptable accuracy. It provided the experimental foundation for investigating architectural parameters and evaluating the proposed methods.</p>
+        <p class="research-note">The timing figures are reproduced from the PhD presentation and should be interpreted in their original experimental context.</p>
+
+        <h2>Understanding Execution Behaviour: Context-Switching Graph</h2>
+        <p>I developed the <strong>Context-Switching Graph (CSG)</strong> to model context-switching behaviour and predict the number of different contexts required by a kernel.</p>
+        <p>In the proposed method, a graph node may need to be converted into multiple contexts when it contains too many instructions or too many memory accesses. The graph provides a way to analyse execution behaviour and estimate context transitions.</p>
+        <p>CSG transitions also provide a graph-level model of application execution time. For example, the presentation illustrates the effect of PE-array size on the number of transitions before the Sharpen application finishes:</p>
+        <div class="table-wrap"><table><thead><tr><th>PE-array size</th><th>CSG transitions</th></tr></thead><tbody>
+            <tr><td>4×4</td><td>3,461,039</td></tr>
+            <tr><td>6×6</td><td>136,180</td></tr>
+        </tbody></table></div>
+        <p>These values are transition counts, not direct measurements of execution time. They demonstrate how an architectural choice can substantially change the application's modelled execution behaviour at the CSG level.</p>
+
+        <h2>Reducing Configuration Overhead</h2>
+        <p>A further part of the research focused on the energy consumed by configuration information and its management. I developed two related methods: Configuration Unification (CU) and Configuration Unification Compression (CUC).</p>
+        <h3>Configuration Unification (CU)</h3>
+        <p>CU investigates opportunities to unify different configurations by exploiting similarities and flexibility in their configuration information. Its objective is to reduce the energy cost associated with context management, rather than treating every configuration as an entirely independent set of information.</p>
+        <h3>Configuration Unification Compression (CUC)</h3>
+        <p>CUC extends the unification approach by introducing compression. The presentation illustrates the configuration transformations and compares their effects across the benchmark set.</p>
+        <p>CU and CUC are primarily configuration-energy optimisation methods. They are distinct from the CSG-based analysis and design-space exploration methods, which contribute to both performance and energy improvement.</p>
+
+        <h2>Predicting Architectural Parameters</h2>
+        <p>Another challenge was determining suitable architectural configurations for different applications. I developed predictive methods for three design parameters:</p>
+        <div class="research-grid">
+            <div class="research-card"><h3>PE-array size</h3><p>Predicting an appropriate size for the processing-element array.</p></div>
+            <div class="research-card"><h3>Number of CRs</h3><p>Predicting the number of Context Registers required inside the processing elements.</p></div>
+            <div class="research-card"><h3>CSN topology</h3><p>Predicting an appropriate context-switching network topology.</p></div>
+        </div>
+        <p>The Context-Switching Network (CSN) is a logical network defined on top of the Context-Memory Network (CMN). For the design-space exploration, the topology alternatives were represented by the B, P, and L models.</p>
+
+        <h2>Combining the Methods: FastExSearch</h2>
+        <p>I developed <strong>FastExSearch</strong>, a fast exhaustive-search approach that uses predicted parameter values to bound the exploration of candidate configurations.</p>
+        <div class="table-wrap"><table><thead><tr><th>Search parameter</th><th>Exploration range</th></tr></thead><tbody>
+            <tr><td>PE-array size</td><td>4×4 to 8×8</td></tr>
+            <tr><td>Number of CRs</td><td>1 to 8</td></tr>
+            <tr><td>Context-memory network model</td><td>P, B, L</td></tr>
+            <tr><td>CUC</td><td>Enabled or disabled</td></tr>
+            <tr><td>Benchmarks</td><td>20</td></tr>
+        </tbody></table></div>
+        <p>Rather than searching the entire configuration space without guidance, FastExSearch uses predicted values as boundaries for the search. This connects the CSG execution model, parameter prediction, configuration optimisation, and evaluation of candidate architectures.</p>
+        <p>In combination, CSG and design-space exploration contribute to improving both processing performance and energy efficiency, while CU and CUC provide additional configuration-focused energy optimisation.</p>
+
+        <h2>Experimental Results</h2>
+        <p>The experimental evaluation compared the proposed approach with existing context-management and design-space exploration methods. The overall proposed design achieved the following reported improvements:</p>
+        <div class="research-grid">
+            <div class="research-card"><span class="metric">79.1%</span><span class="metric-label">Energy improvement</span></div>
+            <div class="research-card"><span class="metric">31.35%</span><span class="metric-label">Performance improvement</span></div>
+            <div class="research-card"><span class="metric">2%</span><span class="metric-label">Area overhead of the whole CGRA</span></div>
+        </div>
+        <p>The comparison table also reports <strong>10.51% area overhead for the context-switching system</strong> in the CUC comparison. This is a subsystem-level figure and is not the same measurement as the 2% area overhead of the whole CGRA.</p>
+        <p>The reported performance improvement is associated with the CSG and design-space exploration parts of the research; it should not be attributed to CU or CUC individually. The results represent the combined proposed approach rather than the independent effect of any one method.</p>
+
+        <h2>Research Contributions</h2>
+        <p>The PhD research brought together nine main contributions:</p>
+        <ol class="contribution-list">
+            <li>Identification and analysis of effective architectural parameters.</li>
+            <li>CGRAmulator: a multi-level modelling and simulation environment.</li>
+            <li>Context-Switching Graph (CSG).</li>
+            <li>Configuration Unification (CU).</li>
+            <li>Configuration Unification Compression (CUC).</li>
+            <li>PE-array size prediction.</li>
+            <li>Number-of-CRs prediction.</li>
+            <li>CSN topology prediction.</li>
+            <li>FastExSearch: predictive design-space exploration.</li>
+        </ol>
+
+        <h2>A Broader Problem-Solving Principle</h2>
+        <p>One idea I want to preserve from this research is:</p>
+        <div class="research-quote"><strong>Preserve the Information, Change Its Presentation.</strong></div>
+        <p>In some complex systems, the information itself may not need to be changed. A different representation, organisation, or presentation can allow the surrounding system to operate more efficiently. This is a conceptual connection I see with some of my later research; it does not mean that every project uses the same algorithm.</p>
+        <p>More broadly, this research reflects the approach I enjoy most: identifying an overlooked bottleneck, understanding the system behind it, and finding a simpler way to achieve a better overall result.</p>
 
         <h2>PhD Dissertation</h2>
-        <p><strong>Title:</strong> Energy reduction in coarse-grained reconfigurable Processors by reducing context-switching overhead</p>
+        <p><strong>Title:</strong> Energy Reduction in Coarse-Grained Reconfigurable Processors by Reducing Context-Switching Overhead</p>
         <p><strong>University:</strong> University of Tehran, Iran — 2018</p>
 
         <h2>Related Publications</h2>
@@ -52,13 +158,14 @@
             <li><strong>Energy Efficient Configuration Unification and Compression for CGRAs</strong> — 2018</li>
             <li><strong>Design-Space Exploration of Application-Specific Instruction-set Processor Design</strong> — 2021</li>
         </ul>
+        <p><a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&amp;hl=en" target="_blank" rel="noopener">View publication record on Google Scholar</a></p>
 
         <div class="footer-contact">
             <p>📧 <a href="mailto:mh.sargolzaie@gmail.com">mh.sargolzaie@gmail.com</a> &nbsp;|&nbsp;
-            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp;
-            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank">ResearchGate</a></p>
+            <a href="https://scholar.google.com/citations?user=ea7m-IEAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> &nbsp;|&nbsp;
+            <a href="https://www.researchgate.net/profile/Mohammad-Hossein-Sargolzaei" target="_blank" rel="noopener">ResearchGate</a></p>
         </div>
-    </div>
+    </main>
 
     <script>
         fetch('navbar.html')
